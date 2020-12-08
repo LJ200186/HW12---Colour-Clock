@@ -57,7 +57,26 @@ public class ColourClockGUI extends javax.swing.JFrame {
             String CurSec = CurTime.substring(6,8);
             String IntSec = df.format(Integer.parseInt(CurSec) * 4.25);
             
-            String Hex = ToHex(IntHour) + ToHex(IntMin) + ToHex(IntSec);
+            String HourHex = ToHex(IntHour);
+            String MinHex = ToHex(IntMin);
+            String SecHex = ToHex(IntSec);
+            
+            if (HourHex.length() < 2){
+                
+                HourHex = "0"+HourHex;
+            }
+            
+            if (MinHex.length() < 2){
+                
+                MinHex = "0"+MinHex;
+            }
+            if (SecHex.length() < 2){
+                
+                SecHex = "0"+SecHex;
+            }
+            
+            
+            String Hex = HourHex + MinHex + SecHex;
             
             Time.setText(CurTime);
             HexLabelCode.setText("#"+Hex);
@@ -75,6 +94,7 @@ public class ColourClockGUI extends javax.swing.JFrame {
         HexLabelCode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(240, 120, 8));
         setPreferredSize(new java.awt.Dimension(599, 350));
         setResizable(false);
@@ -119,7 +139,7 @@ public class ColourClockGUI extends javax.swing.JFrame {
                 .addComponent(Time)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HexLabelCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
